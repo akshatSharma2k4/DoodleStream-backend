@@ -7,13 +7,14 @@ const getWords = require("../helper/getWords.js");
 const dotenv = require("dotenv").config();
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL,
+        origin: "*",
     })
 );
+
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL,
+        origin: "*",
     },
 });
 
@@ -42,7 +43,6 @@ const calcuatePointsForGuess = (guessTime, totalGuessesBefore) => {
     ); // Ensure points do not go below 0
     return finalPoints;
 };
-
 
 const roundUpdation = (room, currentRoundValue) => {
     if (currentRoundValue == roomConditions[room]?.rounds) {
